@@ -6,10 +6,15 @@ import SkillsCard from '@/components/SkillsCard';
 import ProjectCard, { projects } from '@/components/ProjectCard';
 import StatsCard from '@/components/StatsCard';
 import ContactCard from '@/components/ContactCard';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background bg-grid relative overflow-hidden">
+      <div className="fixed top-4 right-4 z-30 md:top-6 md:right-6">
+        <ThemeToggle />
+      </div>
+
       {/* Ambient glow blobs */}
       <div className="fixed top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
       <div className="fixed bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
