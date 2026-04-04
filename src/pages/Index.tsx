@@ -24,7 +24,7 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 auto-rows-auto">
           {/* Hero - spans 2 cols */}
           <BentoCard
-            className="md:col-span-2 xl:col-span-3 min-h-[240px]"
+            className="md:col-span-2 xl:col-span-2 min-h-[250px]"
             glowColor="cyan"
             delay={0}
           >
@@ -32,65 +32,12 @@ const Index = () => {
           </BentoCard>
 
           {/* About */}
-          <BentoCard className="min-h-[240px]" glowColor="purple" delay={100}>
+          <BentoCard className="min-h-[250px]" glowColor="purple" delay={100}>
             <AboutCard />
           </BentoCard>
 
-          {/* Tech Stack */}
-          <BentoCard
-            className="md:col-span-2 xl:col-span-2 min-h-[220px]"
-            glowColor="blue"
-            delay={200}
-          >
-            <SkillsCard />
-          </BentoCard>
-
-          {/* Kompas - featured large */}
-          <BentoCard
-            className="md:col-span-2 xl:col-span-2 min-h-[220px]"
-            glowColor="cyan"
-            delay={300}
-          >
-            <ProjectCard {...projects[0]} />
-          </BentoCard>
-
-          {/* Search Engine */}
-          <BentoCard className="xl:col-span-2 min-h-[210px]" glowColor="purple" delay={400}>
-            <ProjectCard {...projects[1]} />
-          </BentoCard>
-
-          {/* Medigent */}
-          <BentoCard className="min-h-[175px]" glowColor="blue" delay={500}>
-            <ProjectCard {...projects[2]} />
-          </BentoCard>
-
-          {/* FoodApp */}
-          <BentoCard className="min-h-[235px]" glowColor="cyan" delay={600}>
-            <ProjectCard {...projects[3]} />
-          </BentoCard>
-
-          {/* ncs-visualizer */}
-          <BentoCard className="xl:col-span-2 min-h-[185px]" glowColor="purple" delay={650}>
-            <ProjectCard {...projects[4]} />
-          </BentoCard>
-
-          {/* Knowledge Distillation */}
-          <BentoCard className="min-h-[150px]" glowColor="blue" delay={700}>
-            <ProjectCard {...projects[5]} />
-          </BentoCard>
-
-          {/* GitHub Stats */}
-          <BentoCard className="md:col-span-2 xl:col-span-4 min-h-[240px]" glowColor="purple" delay={750}>
-            <StatsCard />
-          </BentoCard>
-
-          {/* Contact */}
-          <BentoCard className="xl:col-span-2 min-h-[170px]" glowColor="cyan" delay={850}>
-            <ContactCard />
-          </BentoCard>
-
           {/* Stats small */}
-          <BentoCard className="min-h-[120px]" glowColor="blue" delay={950}>
+          <BentoCard className="min-h-[250px]" glowColor="blue" delay={150}>
             <div className="flex flex-col justify-center items-center h-full text-center">
               <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">
                 Currently
@@ -105,6 +52,75 @@ const Index = () => {
                 </span>
               </div>
             </div>
+          </BentoCard>
+
+          {/* Tech Stack */}
+          <BentoCard
+            className="md:col-span-2 xl:col-span-2 min-h-[220px]"
+            glowColor="blue"
+            delay={200}
+          >
+            <SkillsCard />
+          </BentoCard>
+
+          {/* Kompas - featured large */}
+          <BentoCard
+            className="md:col-span-2 xl:col-span-3 min-h-[260px]"
+            glowColor="cyan"
+            delay={300}
+          >
+            <ProjectCard {...projects[0]} />
+          </BentoCard>
+
+          {/* Search Engine */}
+          <BentoCard
+            className="min-h-[170px]"
+            glowColor="purple"
+            delay={400}
+          >
+            <ProjectCard {...projects[1]} />
+          </BentoCard>
+
+          {/* Medigent */}
+          <BentoCard className="md:col-span-2 xl:col-span-2 min-h-[245px]" glowColor="blue" delay={500}>
+            <ProjectCard {...projects[2]} />
+          </BentoCard>
+
+          {/* FoodApp */}
+          <BentoCard className="xl:col-span-2 min-h-[205px]" glowColor="cyan" delay={600}>
+            <ProjectCard {...projects[3]} />
+          </BentoCard>
+
+          {/* ncs-visualizer */}
+          <BentoCard
+            className="min-h-[180px]"
+            glowColor="purple"
+            delay={650}
+          >
+            <ProjectCard {...projects[4]} />
+          </BentoCard>
+
+          {/* Knowledge Distillation */}
+          <BentoCard className="md:col-span-2 xl:col-span-2 min-h-[215px]" glowColor="blue" delay={700}>
+            <ProjectCard {...projects[5]} />
+          </BentoCard>
+
+          {/* GitHub Stats */}
+          <BentoCard
+            className="xl:col-span-2 min-h-[205px]"
+            glowColor="purple"
+            delay={750}
+          >
+            <StatsCard />
+          </BentoCard>
+
+          {/* Contact */}
+          <BentoCard
+            className="xl:col-span-2 min-h-[170px]"
+            glowColor="cyan"
+            delay={850}
+          >
+            <ContactCard />
           </BentoCard>
         </div>
 
