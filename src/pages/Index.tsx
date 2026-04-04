@@ -14,40 +14,43 @@ interface BentoConfig {
   id: string;
   glowColor: GlowColor;
   delay: number;
-  minHeightClass: string;
-  defaultMdSpan: number;
-  defaultXlSpan: number;
+  defaultWidth: number;
 }
 
 const BENTO_CONFIGS: BentoConfig[] = [
-  { id: "hero", glowColor: "cyan", delay: 0, minHeightClass: "min-h-[250px]", defaultMdSpan: 2, defaultXlSpan: 2 },
-  { id: "about", glowColor: "purple", delay: 100, minHeightClass: "min-h-[250px]", defaultMdSpan: 1, defaultXlSpan: 1 },
-  { id: "currently", glowColor: "blue", delay: 150, minHeightClass: "min-h-[250px]", defaultMdSpan: 1, defaultXlSpan: 1 },
-  { id: "tech", glowColor: "blue", delay: 200, minHeightClass: "min-h-[220px]", defaultMdSpan: 2, defaultXlSpan: 2 },
-  { id: "kompas", glowColor: "cyan", delay: 300, minHeightClass: "min-h-[260px]", defaultMdSpan: 2, defaultXlSpan: 3 },
-  { id: "search", glowColor: "purple", delay: 400, minHeightClass: "min-h-[170px]", defaultMdSpan: 1, defaultXlSpan: 1 },
-  { id: "medigent", glowColor: "blue", delay: 500, minHeightClass: "min-h-[245px]", defaultMdSpan: 2, defaultXlSpan: 2 },
-  { id: "food", glowColor: "cyan", delay: 600, minHeightClass: "min-h-[205px]", defaultMdSpan: 1, defaultXlSpan: 2 },
-  { id: "ncs", glowColor: "purple", delay: 650, minHeightClass: "min-h-[180px]", defaultMdSpan: 1, defaultXlSpan: 1 },
-  { id: "kd", glowColor: "blue", delay: 700, minHeightClass: "min-h-[215px]", defaultMdSpan: 2, defaultXlSpan: 2 },
-  { id: "github", glowColor: "purple", delay: 750, minHeightClass: "min-h-[205px]", defaultMdSpan: 1, defaultXlSpan: 2 },
-  { id: "contact", glowColor: "cyan", delay: 850, minHeightClass: "min-h-[170px]", defaultMdSpan: 1, defaultXlSpan: 2 },
+  { id: "hero", glowColor: "cyan", delay: 0, defaultWidth: 48 },
+  { id: "about", glowColor: "purple", delay: 100, defaultWidth: 24 },
+  { id: "currently", glowColor: "blue", delay: 150, defaultWidth: 24 },
+  { id: "tech", glowColor: "blue", delay: 200, defaultWidth: 48 },
+  { id: "kompas", glowColor: "cyan", delay: 300, defaultWidth: 72 },
+  { id: "search", glowColor: "purple", delay: 400, defaultWidth: 24 },
+  { id: "medigent", glowColor: "blue", delay: 500, defaultWidth: 48 },
+  { id: "food", glowColor: "cyan", delay: 600, defaultWidth: 36 },
+  { id: "ncs", glowColor: "purple", delay: 650, defaultWidth: 28 },
+  { id: "kd", glowColor: "blue", delay: 700, defaultWidth: 42 },
+  { id: "github", glowColor: "purple", delay: 750, defaultWidth: 34 },
+  { id: "contact", glowColor: "cyan", delay: 850, defaultWidth: 34 },
 ];
 
-const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
+const clamp = (value: number, min: number, max: number) =>
+  Math.max(min, Math.min(max, value));
 
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [order, setOrder] = useState<string[]>(() => BENTO_CONFIGS.map((config) => config.id));
+  const [order, setOrder] = useState<string[]>(() =>
+    BENTO_CONFIGS.map((config) => config.id),
+  );
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const [activeResizeId, setActiveResizeId] = useState<string | null>(null);
   const [resizeStartX, setResizeStartX] = useState(0);
-  const [resizeStartMdSpan, setResizeStartMdSpan] = useState(1);
-  const [resizeStartXlSpan, setResizeStartXlSpan] = useState(1);
-  const [spans, setSpans] = useState<Record<string, { md: number; xl: number }>>(() => {
-    const initial: Record<string, { md: number; xl: number }> = {};
+  const [resizeStartWidth, setResizeStartWidth] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState<number>(
+    typeof window === "undefined" ? 1280 : window.innerWidth,
+  );
+  const [widths, setWidths] = useState<Record<string, number>>(() => {
+    const initial: Record<string, number> = {};
     for (const config of BENTO_CONFIGS) {
-      initial[config.id] = { md: config.defaultMdSpan, xl: config.defaultXlSpan };
+      initial[config.id] = config.defaultWidth;
     }
     return initial;
   });
@@ -57,6 +60,17 @@ const Index = () => {
       acc[config.id] = config;
       return acc;
     }, {});
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -71,17 +85,11 @@ const Index = () => {
 
       const deltaX = event.clientX - resizeStartX;
       const containerWidth = containerRef.current.getBoundingClientRect().width;
-      const mdColWidth = containerWidth / 2;
-      const xlColWidth = containerWidth / 4;
-      const mdDeltaCols = Math.round(deltaX / mdColWidth);
-      const xlDeltaCols = Math.round(deltaX / xlColWidth);
+      const deltaPercent = (deltaX / containerWidth) * 100;
 
       setSpans((previous) => ({
         ...previous,
-        [activeResizeId]: {
-          md: clamp(resizeStartMdSpan + mdDeltaCols, 1, 2),
-          xl: clamp(resizeStartXlSpan + xlDeltaCols, 1, 4),
-        },
+        [activeResizeId]: clamp(resizeStartWidth + deltaPercent, 18, 100),
       }));
     };
 
@@ -96,7 +104,7 @@ const Index = () => {
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerup", onPointerUp);
     };
-  }, [activeResizeId, resizeStartMdSpan, resizeStartX, resizeStartXlSpan]);
+  }, [activeResizeId, resizeStartWidth, resizeStartX]);
 
   const renderCard = (id: string) => {
     if (id === "hero") return <HeroCard />;
@@ -104,11 +112,17 @@ const Index = () => {
     if (id === "currently") {
       return (
         <div className="flex flex-col justify-center items-center h-full text-center">
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">Currently</p>
-          <p className="text-sm text-foreground font-medium">Building AI-powered systems</p>
+          <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">
+            Currently
+          </p>
+          <p className="text-sm text-foreground font-medium">
+            Building AI-powered systems
+          </p>
           <div className="mt-3 flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-primary animate-glow-pulse" />
-            <span className="text-xs text-muted-foreground">Available for work</span>
+            <span className="text-xs text-muted-foreground">
+              Available for work
+            </span>
           </div>
         </div>
       );
@@ -142,29 +156,19 @@ const Index = () => {
     });
   };
 
-  const getSpanClasses = (id: string) => {
-    const span = spans[id] ?? { md: 1, xl: 1 };
-    const mdClass = span.md === 2 ? "md:col-span-2" : "";
-    const xlClass =
-      span.xl === 4
-        ? "xl:col-span-4"
-        : span.xl === 3
-          ? "xl:col-span-3"
-          : span.xl === 2
-            ? "xl:col-span-2"
-            : "";
-    return `${mdClass} ${xlClass}`.trim();
-  };
-
-  const beginResize = (event: React.PointerEvent<HTMLDivElement>, id: string) => {
+  const beginResize = (
+    event: React.PointerEvent<HTMLDivElement>,
+    id: string,
+  ) => {
     event.preventDefault();
     event.stopPropagation();
-    const currentSpan = spans[id] ?? { md: 1, xl: 1 };
+    const currentWidth = widths[id] ?? 24;
     setActiveResizeId(id);
     setResizeStartX(event.clientX);
-    setResizeStartMdSpan(currentSpan.md);
-    setResizeStartXlSpan(currentSpan.xl);
+    setResizeStartWidth(currentWidth);
   };
+
+  const isMobile = viewportWidth < 768;
 
   return (
     <div className="min-h-screen bg-background bg-grid relative overflow-hidden">
@@ -178,12 +182,14 @@ const Index = () => {
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
         {/* Bento Grid */}
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 auto-rows-auto">
+        <div ref={containerRef} className="flex flex-wrap gap-4 items-stretch">
           {order.map((id) => {
             const config = configMap[id];
             if (!config) {
               return null;
             }
+
+            const itemWidth = isMobile ? 100 : widths[id] ?? config.defaultWidth;
 
             return (
               <div
@@ -192,24 +198,33 @@ const Index = () => {
                 onDragStart={(event) => {
                   setDraggedId(id);
                   event.dataTransfer.effectAllowed = "move";
+                  event.dataTransfer.setData("text/plain", id);
                 }}
                 onDragOver={(event) => {
                   event.preventDefault();
+                  event.dataTransfer.dropEffect = "move";
                 }}
-                onDrop={(event) => {
+                onDragEnter={(event) => {
                   event.preventDefault();
                   if (draggedId) {
                     reorderCards(draggedId, id);
                   }
+                }}
+                onDrop={(event) => {
+                  event.preventDefault();
                   setDraggedId(null);
                 }}
                 onDragEnd={() => {
                   setDraggedId(null);
                 }}
-                className={`relative ${getSpanClasses(id)}`}
+                style={{
+                  flexBasis: `calc(${itemWidth}% - 1rem)`,
+                  maxWidth: `calc(${itemWidth}% - 1rem)`,
+                }}
+                className={`relative transition-[transform,flex-basis,max-width,opacity] duration-300 ease-out ${draggedId === id ? "opacity-70 scale-[0.99]" : "opacity-100"}`}
               >
                 <BentoCard
-                  className={`${config.minHeightClass} ${draggedId === id ? "cursor-grabbing" : "cursor-grab"}`}
+                  className={`h-[250px] ${draggedId === id ? "cursor-grabbing" : "cursor-grab"}`}
                   glowColor={config.glowColor}
                   delay={config.delay}
                 >
@@ -220,7 +235,7 @@ const Index = () => {
                   onPointerDown={(event) => {
                     beginResize(event, id);
                   }}
-                  className="absolute right-0 top-0 z-30 h-full w-3 cursor-ew-resize"
+                  className="absolute right-0 top-0 z-30 h-full w-4 cursor-ew-resize hidden md:block"
                   aria-label="Resize card width"
                   role="separator"
                 />
