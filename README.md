@@ -56,4 +56,18 @@ This repository is intended for GitHub Pages at `https://tiendat8605.github.io/`
 
 - For a user site repository (`<username>.github.io`), keep the Vite base path as `/`.
 - Deploy the contents of the production build output from `dist/`.
-- You can deploy with GitHub Actions or manually publish from the default branch.
+- This repo includes an automatic deployment workflow at `.github/workflows/deploy-pages.yml`.
+
+## GitHub Pages Setup
+
+1. Open repository settings on GitHub.
+2. Go to **Pages**.
+3. In **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push to `main` (or run the workflow manually from the Actions tab).
+5. Wait for the `Deploy to GitHub Pages` workflow to finish.
+
+If the site still does not load, verify:
+
+- The workflow run succeeded in the **Actions** tab.
+- Pages is set to **GitHub Actions** (not Deploy from a branch).
+- You are opening `https://tiendat8605.github.io/` exactly.
