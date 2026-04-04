@@ -77,7 +77,7 @@ const BentoCard: React.FC<BentoCardProps> = ({
     <div
       ref={setRef}
       className={cn(
-        "relative rounded-xl bg-card border border-border/80 shadow-sm dark:border-border overflow-hidden transition-transform duration-300 ease-out gradient-border dark:shadow-[0_14px_34px_-24px_hsl(188_90%_52%_/_0.55)]",
+        "relative rounded-xl bg-card/95 border border-border/90 shadow-[0_14px_28px_-20px_hsl(212_96%_52%_/_0.28)] dark:border-border overflow-hidden transition-transform duration-300 ease-out gradient-border dark:shadow-[0_14px_34px_-24px_hsl(188_90%_52%_/_0.55)]",
         isVisible ? "animate-fade-up" : "opacity-0",
         className,
       )}
