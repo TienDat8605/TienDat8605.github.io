@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Trophy, Search, HeartPulse, UtensilsCrossed } from 'lucide-react';
+import { ExternalLink, Trophy, Search, HeartPulse, UtensilsCrossed, Network, GraduationCap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface ProjectProps {
@@ -53,7 +53,7 @@ export const projects: ProjectProps[] = [
     title: 'Kompas',
     description: 'AI-powered travel planning platform using GraphRAG for multimodal context understanding and personalized recommendations.',
     tags: ['GraphRAG', 'AI', 'Python', 'Travel'],
-    link: 'https://github.com/TienDat8605',
+    link: 'https://github.com/TienDat8605/LotusHacks2026',
     highlight: 'Runner-up — Lotus Hackathon',
     icon: <Trophy className="w-4 h-4" />,
     featured: true,
@@ -62,22 +62,36 @@ export const projects: ProjectProps[] = [
     title: 'Search Engine',
     description: 'Semantic search engine with AI-generated summaries. Achieved 30% accuracy improvement over baseline.',
     tags: ['NLP', 'Python', 'Search', 'AI'],
-    link: 'https://github.com/TienDat8605',
+    link: 'https://github.com/TienDat8605/search-engine',
     icon: <Search className="w-4 h-4" />,
   },
   {
     title: 'Medigent',
     description: 'AI health assistant backend with service-layer architecture for scalable medical advice processing.',
     tags: ['Spring Boot', 'AI', 'Healthcare'],
-    link: 'https://github.com/TienDat8605',
+    link: 'https://www.youtube.com/watch?v=knKs4zh_RZw',
     icon: <HeartPulse className="w-4 h-4" />,
   },
   {
     title: 'FoodApp',
     description: 'Real-time food ordering system with optimized database schema and order processing pipeline.',
     tags: ['Java', 'PostgreSQL', 'Real-time'],
-    link: 'https://github.com/TienDat8605',
+    link: 'https://github.com/TienDat8605/FoodAppDatabase2',
     icon: <UtensilsCrossed className="w-4 h-4" />,
+  },
+  {
+    title: 'ncs-visualizer',
+    description: 'Network communication simulator and visualizer for exploring packet flow and protocol behavior.',
+    tags: ['C', 'Networking', 'Visualizer'],
+    link: 'https://github.com/TienDat8605/ncs-visualizer',
+    icon: <Network className="w-4 h-4" />,
+  },
+  {
+    title: 'Knowledge Distillation',
+    description: 'ML experiments on compressing models with distillation strategies for improved efficiency.',
+    tags: ['Python', 'ML', 'Knowledge Distillation'],
+    link: 'https://github.com/TienDat8605/CS418-Project',
+    icon: <GraduationCap className="w-4 h-4" />,
   },
 ];
 

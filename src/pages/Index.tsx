@@ -57,18 +57,28 @@ const Index = () => {
             <ProjectCard {...projects[3]} />
           </BentoCard>
 
+          {/* ncs-visualizer */}
+          <BentoCard className="min-h-[200px]" glowColor="purple" delay={650}>
+            <ProjectCard {...projects[4]} />
+          </BentoCard>
+
+          {/* Knowledge Distillation */}
+          <BentoCard className="min-h-[200px]" glowColor="blue" delay={700}>
+            <ProjectCard {...projects[5]} />
+          </BentoCard>
+
           {/* GitHub Stats */}
-          <BentoCard className="min-h-[200px]" glowColor="purple" delay={700}>
+          <BentoCard className="min-h-[200px]" glowColor="purple" delay={750}>
             <StatsCard />
           </BentoCard>
 
           {/* Contact */}
-          <BentoCard className="lg:col-span-2" glowColor="cyan" delay={800}>
+          <BentoCard className="lg:col-span-2" glowColor="cyan" delay={850}>
             <ContactCard />
           </BentoCard>
 
           {/* Stats small */}
-          <BentoCard className="min-h-[120px]" glowColor="blue" delay={900}>
+          <BentoCard className="min-h-[120px]" glowColor="blue" delay={950}>
             <div className="flex flex-col justify-center items-center h-full text-center">
               <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">Currently</p>
               <p className="text-sm text-foreground font-medium">Building AI-powered systems</p>
