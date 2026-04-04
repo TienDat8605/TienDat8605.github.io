@@ -62,12 +62,13 @@ This repository is intended for GitHub Pages at `https://tiendat8605.github.io/`
 
 1. Open repository settings on GitHub.
 2. Go to **Pages**.
-3. In **Build and deployment**, set **Source** to **GitHub Actions**.
+3. In **Build and deployment**, set **Source** to **Deploy from a branch**.
+4. Select branch **gh-pages** and folder **/(root)**.
 4. Push to `main` (or run the workflow manually from the Actions tab).
 5. Wait for the `Deploy to GitHub Pages` workflow to finish.
 
 If the site still does not load, verify:
 
 - The workflow run succeeded in the **Actions** tab.
-- Pages is set to **GitHub Actions** (not Deploy from a branch).
+- Pages is set to branch **gh-pages** at **/(root)**.
 - You are opening `https://tiendat8605.github.io/` exactly.
