@@ -55,37 +55,37 @@ const Index = () => {
           </BentoCard>
 
           {/* Search Engine */}
-          <BentoCard className="min-h-[190px]" glowColor="purple" delay={400}>
+          <BentoCard className="xl:col-span-2 min-h-[210px]" glowColor="purple" delay={400}>
             <ProjectCard {...projects[1]} />
           </BentoCard>
 
           {/* Medigent */}
-          <BentoCard className="min-h-[190px]" glowColor="blue" delay={500}>
+          <BentoCard className="min-h-[175px]" glowColor="blue" delay={500}>
             <ProjectCard {...projects[2]} />
           </BentoCard>
 
           {/* FoodApp */}
-          <BentoCard className="min-h-[190px]" glowColor="cyan" delay={600}>
+          <BentoCard className="min-h-[235px]" glowColor="cyan" delay={600}>
             <ProjectCard {...projects[3]} />
           </BentoCard>
 
           {/* ncs-visualizer */}
-          <BentoCard className="min-h-[190px]" glowColor="purple" delay={650}>
+          <BentoCard className="xl:col-span-2 min-h-[185px]" glowColor="purple" delay={650}>
             <ProjectCard {...projects[4]} />
           </BentoCard>
 
           {/* Knowledge Distillation */}
-          <BentoCard className="md:col-span-2 xl:col-span-2 min-h-[200px]" glowColor="blue" delay={700}>
+          <BentoCard className="min-h-[150px]" glowColor="blue" delay={700}>
             <ProjectCard {...projects[5]} />
           </BentoCard>
 
           {/* GitHub Stats */}
-          <BentoCard className="min-h-[200px]" glowColor="purple" delay={750}>
+          <BentoCard className="md:col-span-2 xl:col-span-4 min-h-[240px]" glowColor="purple" delay={750}>
             <StatsCard />
           </BentoCard>
 
           {/* Contact */}
-          <BentoCard className="md:col-span-2 xl:col-span-3 min-h-[170px]" glowColor="cyan" delay={850}>
+          <BentoCard className="xl:col-span-2 min-h-[170px]" glowColor="cyan" delay={850}>
             <ContactCard />
           </BentoCard>
 
