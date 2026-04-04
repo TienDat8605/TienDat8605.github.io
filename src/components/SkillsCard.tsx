@@ -19,30 +19,32 @@ const SkillsCard: React.FC = () => {
         <h2 className="text-lg font-bold">Tech Stack</h2>
       </div>
 
-      <div>
-        <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">Languages</p>
-        <div className="flex flex-wrap gap-2">
-          {languages.map((s) => (
-            <SkillBadge key={s} name={s} />
-          ))}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">Languages</p>
+          <div className="flex flex-wrap gap-2">
+            {languages.map((s) => (
+              <SkillBadge key={s} name={s} />
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">Frameworks</p>
-        <div className="flex flex-wrap gap-2">
-          {frameworks.map((s) => (
-            <SkillBadge key={s} name={s} />
-          ))}
+        <div>
+          <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">Frameworks</p>
+          <div className="flex flex-wrap gap-2">
+            {frameworks.map((s) => (
+              <SkillBadge key={s} name={s} />
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">Tools</p>
-        <div className="flex flex-wrap gap-2">
-          {tools.map((s) => (
-            <SkillBadge key={s} name={s} />
-          ))}
+        <div>
+          <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">Tools</p>
+          <div className="flex flex-wrap gap-2">
+            {tools.map((s) => (
+              <SkillBadge key={s} name={s} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
