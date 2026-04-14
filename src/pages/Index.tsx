@@ -64,7 +64,7 @@ const BENTO_CONFIGS: BentoConfig[] = [
   { id: "contact", glowColor: "cyan", delay: 850, defaultWidth: 34 },
 ];
 
-const GRID_COLUMNS = 120;
+const GRID_COLUMNS = 32;
 const MIN_WIDTH_PERCENT = 18;
 const MAX_WIDTH_PERCENT = 100;
 
